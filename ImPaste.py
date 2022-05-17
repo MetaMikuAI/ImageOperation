@@ -1,5 +1,3 @@
-#Drag at least one Image has an identical height onto it, then they will be pasted laterally to a BIG IMAGE named 'output.jpg'.
-#If only one Image input， python will convert input Image in all supported format into '.jpg'
 import numpy as np
 from PIL import Image
 import sys
@@ -10,10 +8,13 @@ for arg in sys.argv:
         continue
     if n==1:
         im=np.array(Image.open(sys.argv[n]))
+        print('reading '+sys.argv[n])
         n+=1
     else:
+        print('reading '+sys.argv[n])
         im=np.concatenate((im,np.array(Image.open(sys.argv[n]))),axis=1)
+        print('paste done '+sys.argv[n])
         n+=1
 
 img=Image.fromarray(im)
-img.save('out.jpg')
+img.save('out.png')
